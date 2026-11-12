@@ -22,6 +22,18 @@ npm run build    # tayyor fayllar dist/ papkasida
 | `src/assets/` | Logo va dastur skrinshotlari |
 
 
+## Reklama uchun ariza sahifasi: `/ariza`
+
+Instagram / Facebook target reklamasida shu havolani qo'ying: `https://<domen>/ariza`
+Kampaniyani botda ajratib ko'rish uchun UTM qo'shing, masalan:
+
+```
+https://e-pro.uz/ariza?utm_source=instagram&utm_campaign=noyabr_aksiya
+```
+
+Botga kelgan xabarda `📍 Manba: ariza sahifasi` va `📣 Reklama: instagram · noyabr_aksiya` ko'rinadi.
+Fayllar: `ariza/index.html`, `src/ariza.jsx`, `src/components/LeadPage.jsx`.
+
 ## Arizalar → Telegram bot
 
 Forma arizani `POST /api/lead` ga yuboradi. Server tokenni o'zida ishlatib, arizani **Telegram bot**ga

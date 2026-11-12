@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../i18n'
 import Icon from '../icons'
+import { readUtm, submitLead } from '../lead'
 
-// Ariza ikki joyga yuboriladi:
-//  1) /api/lead — server endpoint (netlify/functions/lead.mjs): Telegram bot + Google Sheets/Gmail.
-//     Bot tokeni faqat serverda (.env / Netlify env), brauzerga chiqmaydi.
-//  2) Netlify Forms (forma nomi "lead") — zaxira nusxa; maydonlar public/__forms.html bilan bir xil.
+// Ariza src/lead.js orqali yuboriladi: /api/lead (Telegram bot) + Netlify Forms zaxira.
 export default function LeadModal({ onClose }) {
   const { t, lang } = useLang()
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
@@ -23,20 +21,15 @@ export default function LeadModal({ onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    const data = new FormData(e.target)
-    data.set('subject', `EPRO: yangi ariza — ${data.get('name')}`)
-    const body = new URLSearchParams(data).toString()
-    const post = (url) =>
-      fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
-      }).then((res) => {
-        if (!res.ok) throw new Error(res.status)
-      })
-
-    const results = await Promise.allSettled([post('/api/lead'), post('/__forms.html')])
-    setStatus(results.some((r) => r.status === 'fulfilled') ? 'sent' : 'error')
+    const fields = Object.fromEntries(new FormData(e.target))
+    delete fields['form-name']
+    const ok = await submitLead({
+      ...fields,
+      subject: `EPRO: yangi ariza — ${fields.name}`,
+      source: 'sayt',
+      ...readUtm(),
+    })
+    setStatus(ok ? 'sent' : 'error')
   }
 
   return (

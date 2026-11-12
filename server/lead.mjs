@@ -22,6 +22,8 @@ async function sendTelegram(lead, env) {
     `📞 <b>Telefon:</b> ${esc(lead.phone)}`,
     lead.company && `🏢 <b>Kompaniya:</b> ${esc(lead.company)}`,
     `🌐 <b>Til:</b> ${esc(lead.language || '—')}`,
+    lead.source && `📍 <b>Manba:</b> ${esc(lead.source)}`,
+    lead.utm && `📣 <b>Reklama:</b> ${esc(lead.utm)}`,
     `🕒 ${lead.date}`,
   ].filter(Boolean).join('\n')
 
@@ -47,7 +49,7 @@ async function sendGoogle(lead, env) {
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ name: lead.name, phone: lead.phone, company: lead.company, language: lead.language }),
+    body: new URLSearchParams({ name: lead.name, phone: lead.phone, company: lead.company, language: lead.language, source: lead.source, utm: lead.utm }),
     redirect: 'follow',
   })
   if (!res.ok) throw new Error(`Google ${res.status}`)
@@ -68,6 +70,12 @@ export async function handleLead(body, env) {
     phone: clean(body.phone),
     company: clean(body.company),
     language: clean(body.language),
+    source: clean(body.source),
+    // Reklama belgilari: utm_source / utm_campaign / ... → "instagram · cpc · yanvar_aksiya"
+    utm: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+      .map((k) => clean(body[k]))
+      .filter(Boolean)
+      .join(' · '),
     date: new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Tashkent' }),
   }
   if (!lead.name || lead.phone.replace(/\D/g, '').length < 7) {

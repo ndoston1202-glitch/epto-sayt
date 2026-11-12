@@ -310,3 +310,57 @@ img { max-width: 100%; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form-error { color: #d92d20; font-size: 14px; margin: 4px 0 8px; }
 .btn:disabled { opacity: .7; cursor: wait; }
+
+/* ===== Ariza sahifasi (/ariza) ===== */
+.lp { min-height: 100vh; display: flex; flex-direction: column; background: radial-gradient(900px 500px at 15% 0%, var(--tint), transparent 70%), #fff; }
+.lp-top { display: flex; align-items: center; justify-content: space-between; padding-top: 20px; padding-bottom: 20px; }
+.lp-langs { display: flex; gap: 4px; background: var(--bg-gray); border: 1px solid var(--line); border-radius: 12px; padding: 4px; }
+.lp-langs button { border: 0; background: none; padding: 6px 10px; border-radius: 8px; font-weight: 600; font-size: 13px; color: var(--ink-2); }
+.lp-langs button.active { background: #fff; color: var(--blue); box-shadow: var(--shadow); }
+.lp-grid {
+  flex: 1; display: grid; grid-template-columns: 1.1fr 0.9fr; grid-template-areas: 'head card' 'more card';
+  column-gap: 56px; row-gap: 0; align-content: center; align-items: start; padding-top: 24px; padding-bottom: 48px;
+}
+.lp-head { grid-area: head; align-self: end; }
+.lp-more { grid-area: more; }
+.lp-card { grid-area: card; align-self: center; }
+.lp-head h1 { font-size: 48px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; color: var(--blue); }
+.lp-sub { margin: 18px 0 24px; font-size: 18px; color: var(--ink-2); max-width: 540px; }
+.lp-points { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.lp-points li { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 16px; }
+.lp-check { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--gradient); color: #fff; }
+.lp-phone { margin-top: 36px; container-type: inline-size; width: 230px; }
+.lp-phone .iphone { position: relative; width: 100%; right: auto; bottom: auto; }
+
+.lp-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 32px; box-shadow: 0 30px 80px rgba(10, 77, 255, .12), var(--shadow); }
+.lp-card h2 { font-size: 24px; font-weight: 800; color: var(--blue); margin-bottom: 20px; }
+.lp-card label { display: block; margin-bottom: 14px; }
+.lp-card label span { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.lp-card input {
+  width: 100%; padding: 15px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-gray);
+  font: inherit; font-size: 16px; color: var(--ink); outline: none;
+}
+.lp-card input:focus { border-color: var(--blue); background: #fff; box-shadow: 0 0 0 4px var(--tint); }
+.lp-card form .btn { width: 100%; margin-top: 6px; font-size: 17px; }
+.lp-privacy { text-align: center; color: var(--ink-3); font-size: 13px; margin-top: 12px; }
+.lp-success { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 16px 0; }
+.lp-success h2 { margin: 0; }
+.lp-success p { color: var(--ink-2); }
+.lp-call { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; }
+.lp-call b { color: var(--ink); }
+.lp-call svg { color: var(--blue); }
+.lp-foot { padding-bottom: 24px; color: var(--ink-3); font-size: 13px; }
+
+@media (max-width: 900px) {
+  .lp-grid { grid-template-columns: 1fr; grid-template-areas: 'head' 'card' 'more'; row-gap: 20px; padding-top: 0; }
+  .lp-head .hero-badge { margin-bottom: 12px; padding: 6px 12px; font-size: 13px; }
+  .lp-head h1 { font-size: 28px; }
+  .lp-sub { font-size: 15px; margin: 10px 0 0; }
+  .lp-more { padding: 8px 4px 0; }
+  .lp-card h2 { font-size: 20px; margin-bottom: 14px; }
+  .lp-card label { margin-bottom: 10px; }
+  .lp-card input { padding: 13px 14px; }
+  .lp-top { padding-top: 14px; padding-bottom: 14px; }
+  .lp-phone { display: none; }
+  .lp-card { padding: 24px 20px; border-radius: 20px; }
+}
