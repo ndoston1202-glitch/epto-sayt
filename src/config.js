@@ -19,4 +19,5 @@ export const regions = [
   { uz: 'Andijon', ru: 'Андижан', en: 'Andijan' },
   { uz: 'Namangan', ru: 'Наманган', en: 'Namangan' },
   { uz: 'Buxoro', ru: 'Бухара', en: 'Bukhara' },
+  { uz: 'Navoiy', ru: 'Навои', en: 'Navoi' },
 ]
