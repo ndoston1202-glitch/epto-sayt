@@ -2,7 +2,7 @@ import { useLang } from '../i18n'
 import Icon from '../icons'
 import SectionHead from './SectionHead'
 
-const icons = ['store', 'globe', 'card', 'boxes', 'network', 'factory']
+const icons = ['brick', 'tv', 'wrench']
 
 export default function Audience() {
   const { t } = useLang()

@@ -6,9 +6,9 @@ import Icon from '../icons'
 
 const links = [
   ['home', '#top'],
+  ['product', '#product'],
   ['modules', '#modules'],
   ['benefits', '#benefits'],
-  ['reviews', '#reviews'],
   ['contacts', '#contacts'],
 ]
 

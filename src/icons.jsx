@@ -37,6 +37,11 @@ const paths = {
   laptop: <><rect x="4" y="5" width="16" height="11" rx="1.5" /><path d="M2 19h20" /></>,
   plug: <><path d="M9 3v5M15 3v5" /><path d="M6 8h12v3a6 6 0 01-12 0z" /><path d="M12 17v4" /></>,
   check: <path d="M5 12l5 5 9-10" />,
+  brick: <><rect x="3" y="5" width="18" height="14" rx="1.5" /><path d="M3 9.7h18M3 14.3h18M9 5v4.7M15 9.7v4.6M9 14.3V19" /></>,
+  tv: <><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 21h8M12 17v4" /></>,
+  wrench: <path d="M14.7 6.3a4 4 0 005 5L21 13l-8 8-3-3 6.7-6.7a4 4 0 01-5-5zM3 21l6-6" />,
+  register: <><rect x="4" y="11" width="16" height="10" rx="1.5" /><path d="M7 11V5h10v6M9 8h6M8 15h2M12 15h2M16 15h0M8 18h8" /></>,
+  dollar: <><circle cx="12" cy="12" r="9" /><path d="M15 9.5a2.5 2 0 00-2.5-1.5h-1a2 2 0 000 4h1a2 2 0 010 4h-1A2.5 2 0 019 14.5M12 6.5v1.5M12 16v1.5" /></>,
 }
 
 export default function Icon({ name, size = 24, className, stroke = 1.8 }) {

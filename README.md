@@ -15,15 +15,14 @@ npm run build    # tayyor fayllar dist/ papkasida
 | Fayl | Nima uchun |
 |---|---|
 | `src/translations.js` | Barcha matnlar (UZ / RU / EN) |
-| `src/config.js` | Telefonlar, ijtimoiy tarmoqlar, mijoz kompaniyalar nomlari |
+| `src/config.js` | Telefon, Telegram, Instagram, Google Script URL |
 | `src/styles.css` | Ranglar (`:root` ichida) va dizayn |
 | `src/components/` | Har bir boʻlim alohida komponent |
 | `src/components/LeadModal.jsx` | “Bepul konsultatsiya” formasi |
-| `src/assets/epro-wordmark.png` | Logo |
+| `src/assets/` | Logo va dastur skrinshotlari |
 
-## Namuna (almashtirilishi kerak)
 
-- Raqamlar (500+ kompaniya), telefonlar, manzil, ijtimoiy tarmoq havolalari
-- Mijoz fikrlari va hamkor kompaniyalar nomlari
-- Aksiya shartlari (12 oy + 3 oy bonus)
-- Forma hozircha arizani hech qayerga yubormaydi — Telegram bot yoki CRM ulanishi kerak
+## Arizalar
+
+Forma arizani ikki joyga yuboradi: Netlify Forms (zaxira) va Google Sheets + Gmail.
+Google qismini sozlash: [`google-sheets/README.md`](google-sheets/README.md).

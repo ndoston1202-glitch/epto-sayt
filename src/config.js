@@ -1,12 +1,12 @@
-// Kontakt ma'lumotlari — haqiqiylari bilan almashtiring
+// Kontakt ma'lumotlari
 export const contacts = {
-  salesPhone: '+998 XX XXX XX XX',
-  supportPhone: '+998 XX XXX XX XX',
-  telegram: 'https://t.me/',
-  instagram: 'https://instagram.com/',
-  facebook: 'https://facebook.com/',
-  youtube: 'https://youtube.com/',
+  phone: '+998 93 091 07 14',
+  telegram: 'https://t.me/dostonosirov',
+  telegramHandle: '@dostonosirov',
+  instagram: 'https://instagram.com/e_pro.uz',
+  instagramHandle: 'e_pro.uz',
 }
 
-// Hamkor/mijoz kompaniyalar nomlari (logolar kelganda rasmga almashtiriladi)
-export const partners = ['Kompaniya 1', 'Kompaniya 2', 'Kompaniya 3', 'Kompaniya 4', 'Kompaniya 5', 'Kompaniya 6']
+// Google Apps Script veb-ilova manzili (google-sheets/README.md ga qarang).
+// Bo'sh bo'lsa, arizalar faqat Netlify Forms'ga yuboriladi.
+export const GOOGLE_SCRIPT_URL = ''

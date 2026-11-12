@@ -20,14 +20,13 @@ function Devices() {
   )
 }
 
-function Integrations() {
-  const items = ['card', 'receipt', 'send', 'globe', 'qr', 'truck']
+function Support() {
+  const { t } = useLang()
   return (
-    <div className="why-art integr" aria-hidden="true">
-      <div className="integr-hub">EPRO</div>
-      {items.map((n, i) => (
-        <span key={n} className={`integr-node n${i}`}><Icon name={n} size={22} /></span>
-      ))}
+    <div className="why-art chat" aria-hidden="true">
+      <div className="bubble bubble-in">{t.why.chatQ}</div>
+      <div className="bubble bubble-out">{t.why.chatA}</div>
+      <div className="chat-badge"><Icon name="send" size={18} /> Telegram</div>
     </div>
   )
 }
@@ -35,7 +34,7 @@ function Integrations() {
 export default function Why({ onCta }) {
   const { t } = useLang()
   return (
-    <section className="section section-gray">
+    <section className="section">
       <div className="container">
         <SectionHead title={t.why.title} subtitle={t.why.subtitle} />
         <div className="grid grid-2">
@@ -45,9 +44,9 @@ export default function Why({ onCta }) {
             <Devices />
           </article>
           <article className="card why-card">
-            <h3>{t.why.integrTitle}</h3>
-            <p>{t.why.integrText}</p>
-            <Integrations />
+            <h3>{t.why.supportTitle}</h3>
+            <p>{t.why.supportText}</p>
+            <Support />
           </article>
         </div>
         <div className="demo-cta">

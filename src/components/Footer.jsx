@@ -5,7 +5,7 @@ import Logo from './Logo'
 
 export default function Footer() {
   const { t } = useLang()
-  const tel = (p) => `tel:${p.replace(/[^\d+]/g, '')}`
+  const tel = `tel:${contacts.phone.replace(/[^\d+]/g, '')}`
   return (
     <footer className="footer" id="contacts">
       <div className="container footer-grid">
@@ -16,25 +16,24 @@ export default function Footer() {
         <div>
           <h4>{t.footer.pages}</h4>
           <a href="#top">{t.nav.home}</a>
+          <a href="#product">{t.nav.product}</a>
           <a href="#modules">{t.nav.modules}</a>
           <a href="#benefits">{t.nav.benefits}</a>
-          <a href="#reviews">{t.nav.reviews}</a>
         </div>
         <div>
           <h4>{t.footer.contacts}</h4>
-          <a href={tel(contacts.salesPhone)} className="phone">{contacts.salesPhone}</a>
-          <small>{t.footer.sales}</small>
-          <a href={tel(contacts.supportPhone)} className="phone">{contacts.supportPhone}</a>
-          <small>{t.footer.support}</small>
-          <a href={contacts.telegram} target="_blank" rel="noreferrer">{t.footer.telegram}</a>
-          <small>{t.footer.address}</small>
-          <div className="socials">
-            {[['send', contacts.telegram], ['instagram', contacts.instagram], ['facebook', contacts.facebook], ['youtube', contacts.youtube]].map(([icon, href]) => (
-              <a key={icon} href={href} target="_blank" rel="noreferrer" aria-label={icon}>
-                <Icon name={icon} size={18} />
-              </a>
-            ))}
-          </div>
+          <a href={tel} className="contact-row">
+            <span className="contact-icon"><Icon name="phone" size={18} /></span>
+            <span><small>{t.footer.phone}</small><b>{contacts.phone}</b></span>
+          </a>
+          <a href={contacts.telegram} target="_blank" rel="noreferrer" className="contact-row">
+            <span className="contact-icon"><Icon name="send" size={18} /></span>
+            <span><small>{t.footer.telegram}</small><b>{contacts.telegramHandle}</b></span>
+          </a>
+          <a href={contacts.instagram} target="_blank" rel="noreferrer" className="contact-row">
+            <span className="contact-icon"><Icon name="instagram" size={18} /></span>
+            <span><small>{t.footer.instagram}</small><b>{contacts.instagramHandle}</b></span>
+          </a>
         </div>
       </div>
       <div className="container footer-bottom">
