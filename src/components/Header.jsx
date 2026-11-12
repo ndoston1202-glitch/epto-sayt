@@ -20,23 +20,29 @@ function LangSwitch() {
 
   useEffect(() => {
     const close = (e) => ref.current && !ref.current.contains(e.target) && setOpen(false)
+    const onKey = (e) => e.key === 'Escape' && setOpen(false)
     document.addEventListener('click', close)
-    return () => document.removeEventListener('click', close)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('click', close)
+      document.removeEventListener('keydown', onKey)
+    }
   }, [])
 
   const current = languages.find((l) => l.code === lang)
   return (
     <div className="lang" ref={ref}>
-      <button className="lang-btn" onClick={() => setOpen((o) => !o)} aria-haspopup="listbox" aria-expanded={open}>
+      <button className="lang-btn" onClick={() => setOpen((o) => !o)} aria-haspopup="true" aria-expanded={open} aria-label="Til / Язык / Language">
         {current.label}
         <Icon name="chevron" size={16} />
       </button>
       {open && (
-        <ul className="lang-menu" role="listbox">
+        <ul className="lang-menu">
           {languages.map((l) => (
             <li key={l.code}>
               <button
                 className={l.code === lang ? 'active' : ''}
+                aria-current={l.code === lang ? 'true' : undefined}
                 onClick={() => {
                   setLang(l.code)
                   setOpen(false)
@@ -78,7 +84,7 @@ export default function Header({ onCta }) {
             <button className="btn btn-primary header-cta" onClick={onCta}>
               {t.cta.consult}
             </button>
-            <button className="burger" onClick={() => setMenu((m) => !m)} aria-label="Menu">
+            <button className="burger" onClick={() => setMenu((m) => !m)} aria-label="Menu" aria-expanded={menu}>
               <Icon name={menu ? 'close' : 'menu'} />
             </button>
           </div>

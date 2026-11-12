@@ -10,7 +10,7 @@
 // Alohida yaratilgan bo'lsa, jadval ID sini yozing: docs.google.com/spreadsheets/d/<ID>/edit
 const SHEET_ID = ''
 const SHEET_NAME = 'Arizalar'
-const HEADERS = ['Sana', 'Ism', 'Telefon', 'Kompaniya', 'Til', 'Holat']
+const HEADERS = ['Sana', 'Ism', 'Telefon', 'Kompaniya', 'Til', 'Holat', 'Manba', 'Reklama']
 // Xat boshqa manzilga ham borsin desangiz, shu yerga vergul bilan yozing
 const EXTRA_EMAILS = ''
 
@@ -26,6 +26,8 @@ function doPost(e) {
 
   const company = clean(p.company)
   const lang = clean(p.language)
+  const source = clean(p.source)
+  const utm = clean(p.utm)
   const date = Utilities.formatDate(new Date(), 'Asia/Tashkent', 'dd.MM.yyyy HH:mm')
 
   const lock = LockService.getScriptLock()
@@ -33,12 +35,12 @@ function doPost(e) {
   try {
     const sheet = getSheet()
     // "'" belgisi qiymatni matn sifatida saqlaydi (+998... formula bo'lib qolmasligi uchun)
-    sheet.appendRow([date, txt(name), txt(phone), txt(company), lang, 'Yangi'])
+    sheet.appendRow([date, txt(name), txt(phone), txt(company), lang, 'Yangi', txt(source), txt(utm)])
   } finally {
     lock.releaseLock()
   }
 
-  sendMail({ date, name, phone, company, lang })
+  sendMail({ date, name, phone, company, lang, source, utm })
   return ok()
 }
 
@@ -57,9 +59,9 @@ function getSheet() {
   const ss = getSpreadsheet()
   let sheet = ss.getSheetByName(SHEET_NAME)
   if (!sheet) sheet = ss.insertSheet(SHEET_NAME)
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(HEADERS)
-    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#eaf1ff')
+  // Sarlavhalar: yangi varaqda yoziladi, eski varaqda yetishmayotgan ustunlar qo'shiladi
+  if (sheet.getLastRow() === 0 || sheet.getLastColumn() < HEADERS.length) {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold').setBackground('#eaf1ff')
     sheet.setFrozenRows(1)
   }
   return sheet
@@ -83,6 +85,8 @@ function sendMail(d) {
       row('Telefon', d.phone) +
       row('Kompaniya', d.company) +
       row('Til', d.lang) +
+      row('Manba', d.source) +
+      row('Reklama', d.utm) +
       '</table>' +
       '<p style="font-family:sans-serif"><a href="' + sheetUrl + '">Barcha arizalar jadvali</a></p>',
   })

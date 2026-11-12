@@ -30,14 +30,20 @@ const TYPES = {
 }
 
 // Oddiy cheklov: bitta IP'dan daqiqasiga 5 ta ariza
+const WINDOW = 60_000
 const hits = new Map()
 function limited(ip) {
   const now = Date.now()
-  const list = (hits.get(ip) || []).filter((t) => now - t < 60_000)
+  const list = (hits.get(ip) || []).filter((t) => now - t < WINDOW)
   list.push(now)
   hits.set(ip, list)
   return list.length > 5
 }
+// Eski yozuvlarni tozalab turamiz — aks holda xotira asta-sekin to'ladi
+setInterval(() => {
+  const now = Date.now()
+  for (const [ip, list] of hits) if (now - list[list.length - 1] > WINDOW) hits.delete(ip)
+}, WINDOW).unref()
 
 async function readText(req, limit = 10_000) {
   let data = ''
@@ -48,8 +54,10 @@ async function readText(req, limit = 10_000) {
   return data
 }
 
+const BASE_HEADERS = { 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin' }
+
 function send(res, status, body, type = 'application/json') {
-  res.writeHead(status, { 'Content-Type': type })
+  res.writeHead(status, { ...BASE_HEADERS, 'Content-Type': type })
   res.end(typeof body === 'string' || Buffer.isBuffer(body) ? body : JSON.stringify(body))
 }
 
@@ -88,7 +96,7 @@ createServer(async (req, res) => {
   try {
     const data = await readFile(file)
     const cache = file.includes(`${DIST}/assets/`) ? 'public, max-age=31536000, immutable' : 'no-cache'
-    res.writeHead(200, { 'Content-Type': TYPES[extname(file)] || 'application/octet-stream', 'Cache-Control': cache })
+    res.writeHead(200, { ...BASE_HEADERS, 'Content-Type': TYPES[extname(file)] || 'application/octet-stream', 'Cache-Control': cache })
     res.end(req.method === 'HEAD' ? undefined : data)
   } catch {
     send(res, 404, 'Not Found', 'text/plain')

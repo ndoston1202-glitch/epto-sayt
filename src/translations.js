@@ -12,7 +12,6 @@ const uz = {
   cta: {
     consult: 'Bepul konsultatsiya',
     consultLong: 'Bepul konsultatsiya olish',
-    demo: 'Demo versiya',
   },
   hero: {
     badge: 'Ombor · Kassa · Analitika · HR',
@@ -64,7 +63,6 @@ const uz = {
       ['Analitika', 'Kunlik va oylik savdo, oʻrtacha chek, top mahsulotlar va savdo dinamikasi'],
       ['HR', 'Xodimlar va sotuvchilar faoliyati, ish samaradorligi nazorati'],
     ],
-    moreText: 'Barcha imkoniyatlarni koʻrish uchun bepul konsultatsiyaga yoziling',
   },
   benefits: {
     title: 'Epro sizga nima beradi?',
@@ -143,7 +141,6 @@ const ru = {
   cta: {
     consult: 'Бесплатная консультация',
     consultLong: 'Получить консультацию',
-    demo: 'Демо-версия',
   },
   hero: {
     badge: 'Склад · Касса · Аналитика · HR',
@@ -195,7 +192,6 @@ const ru = {
       ['Аналитика', 'Дневные и месячные продажи, средний чек, топ товаров и динамика продаж'],
       ['HR', 'Контроль работы сотрудников и продавцов, их эффективности'],
     ],
-    moreText: 'Запишитесь на бесплатную консультацию, чтобы увидеть все возможности',
   },
   benefits: {
     title: 'Что даёт вам Epro?',
@@ -274,7 +270,6 @@ const en = {
   cta: {
     consult: 'Free consultation',
     consultLong: 'Get a free consultation',
-    demo: 'Try the demo',
   },
   hero: {
     badge: 'Inventory · POS · Analytics · HR',
@@ -326,7 +321,6 @@ const en = {
       ['Analytics', 'Daily and monthly sales, average receipt, top products and sales trends'],
       ['HR', 'Track staff and sales team activity and performance'],
     ],
-    moreText: 'Book a free consultation to see every feature',
   },
   benefits: {
     title: 'What does Epro give you?',

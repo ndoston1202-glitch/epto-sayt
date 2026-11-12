@@ -2,6 +2,9 @@
 //  1) /api/lead — server endpoint: Telegram bot (+ Google Sheets). Token faqat serverda.
 //  2) /__forms.html — Netlify Forms zaxira nusxa (faqat Netlify'da ishlaydi)
 
+/** Telefon maydoni uchun HTML pattern: raqamlar, bo'sh joy, +, (), - ; 9–20 belgi */
+export const PHONE_PATTERN = '[\\d\\s+\\(\\)\\-]{9,20}'
+
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
 
 /** Reklama havolasidagi UTM belgilarini oladi (sahifa ochilganda bir marta) */

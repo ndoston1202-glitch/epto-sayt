@@ -36,3 +36,8 @@ URL'ni Netlify'da `GOOGLE_SCRIPT_URL` muhit o'zgaruvchisiga yozing (lokal ishlas
 - Kodni o'zgartirsangiz: **Deploy → Manage deployments → ✏️ → Version: New version → Deploy**. URL o'zgarmaydi.
 - Xat boshqa manzilga ham borsin desangiz, `EXTRA_EMAILS` ga yozing.
 - Gmail kuniga ~100 ta xat cheklovi bor (oddiy akkaunt) — landing uchun yetarli.
+
+## Yangilanish: "Manba" va "Reklama" ustunlari
+`Code.gs` endi arizaning manbasini (sayt / ariza sahifasi) va reklama belgilarini (UTM) ham yozadi.
+Yoqish uchun: Apps Script'da kodni yangisiga almashtiring → **Начать развертывание → Управление
+развертываниями → ✏️ → Новая версия → Развернуть**. URL o'zgarmaydi.

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../i18n'
 import Icon from '../icons'
-import { readUtm, submitLead } from '../lead'
+import { PHONE_PATTERN, readUtm, submitLead } from '../lead'
 
 // Ariza src/lead.js orqali yuboriladi: /api/lead (Telegram bot) + Netlify Forms zaxira.
 export default function LeadModal({ onClose }) {
@@ -22,7 +22,6 @@ export default function LeadModal({ onClose }) {
     e.preventDefault()
     setStatus('sending')
     const fields = Object.fromEntries(new FormData(e.target))
-    delete fields['form-name']
     const ok = await submitLead({
       ...fields,
       subject: `EPRO: yangi ariza — ${fields.name}`,
@@ -46,15 +45,23 @@ export default function LeadModal({ onClose }) {
           </div>
         ) : (
           <form name="lead" onSubmit={handleSubmit}>
-            <input type="hidden" name="form-name" value="lead" />
             <input type="hidden" name="language" value={lang} />
             <p className="hp" aria-hidden="true">
               <input name="bot-field" tabIndex={-1} autoComplete="off" />
             </p>
             <h3 id="lead-title">{t.form.title}</h3>
             <p>{t.form.text}</p>
-            <input required name="name" placeholder={t.form.name} autoComplete="name" />
-            <input required name="phone" type="tel" placeholder={t.form.phone} defaultValue="+998 " autoComplete="tel" />
+            <input required autoFocus name="name" placeholder={t.form.name} autoComplete="name" />
+            <input
+              required
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              pattern={PHONE_PATTERN}
+              placeholder={t.form.phone}
+              defaultValue="+998 "
+              autoComplete="tel"
+            />
             <input name="company" placeholder={t.form.company} autoComplete="organization" />
             {status === 'error' && <p className="form-error">{t.form.error}</p>}
             <button className="btn btn-primary btn-lg" type="submit" disabled={status === 'sending'}>

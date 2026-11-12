@@ -20,7 +20,7 @@ export default function MediaPage() {
   const [tab, setTab] = useState('all')
 
   useEffect(() => {
-    document.title = `${m.title} — ${m.subtitle.split(': ')[1] || ''}`.trim()
+    document.title = m.title
   }, [m])
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function MediaPage() {
             </div>
 
             {state.status === 'loading' ? (
-              <div className="media-grid">
+              <div className="media-grid" aria-busy="true" aria-label={m.loading}>
                 {Array.from({ length: 9 }, (_, i) => <span key={i} className="media-cell skeleton" />)}
               </div>
             ) : items.length === 0 ? (

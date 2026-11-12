@@ -15,10 +15,11 @@ export default function Footer() {
         </div>
         <div>
           <h4>{t.footer.pages}</h4>
-          <a href="#top">{t.nav.home}</a>
-          <a href="#product">{t.nav.product}</a>
-          <a href="#modules">{t.nav.modules}</a>
-          <a href="#benefits">{t.nav.benefits}</a>
+          <a href="/#top">{t.nav.home}</a>
+          <a href="/#product">{t.nav.product}</a>
+          <a href="/#modules">{t.nav.modules}</a>
+          <a href="/#benefits">{t.nav.benefits}</a>
+          <a href="/mediateka/">{t.nav.media}</a>
         </div>
         <div>
           <h4>{t.footer.contacts}</h4>

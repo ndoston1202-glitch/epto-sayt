@@ -1,10 +1,10 @@
 // Reklama (Instagram / Facebook target) uchun alohida sahifa: /ariza
 // Raqam qoldirilganda ariza /api/lead orqali Telegram botga tushadi.
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useLang } from '../i18n'
 import { languages } from '../translations'
 import { contacts } from '../config'
-import { readUtm, submitLead } from '../lead'
+import { PHONE_PATTERN, readUtm, submitLead } from '../lead'
 import Icon from '../icons'
 import Logo from './Logo'
 import phoneScreen from '../assets/screen-phone.webp'
@@ -27,7 +27,6 @@ export default function LeadPage() {
   const p = t.leadPage
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const utm = useMemo(readUtm, [])
-  const nameRef = useRef(null)
   const tel = `tel:${contacts.phone.replace(/[^\d+]/g, '')}`
 
   useEffect(() => {
@@ -104,7 +103,7 @@ export default function LeadPage() {
               </p>
               <label>
                 <span>{t.form.name}</span>
-                <input ref={nameRef} required name="name" autoComplete="name" placeholder={t.form.name} />
+                <input required name="name" autoComplete="name" placeholder={t.form.name} />
               </label>
               <label>
                 <span>{t.form.phone}</span>
@@ -115,7 +114,7 @@ export default function LeadPage() {
                   inputMode="tel"
                   autoComplete="tel"
                   defaultValue="+998 "
-                  pattern="[\d\s+()\-]{9,20}"
+                  pattern={PHONE_PATTERN}
                   placeholder="+998 90 123 45 67"
                 />
               </label>
