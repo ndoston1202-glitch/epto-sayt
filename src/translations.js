@@ -29,6 +29,13 @@ const uz = {
       ['Xizmat koʻrsatish tashkilotlari', 'Xizmatlar savdosi, mijozlar bazasi va toʻlovlar hisobi'],
     ],
   },
+  stats: {
+    title: 'Kompaniyamiz raqamlarda',
+    items: ['biznes Epro bilan avtomatlashtirilgan', 'xodim kundalik ishini Epro’da yuritadi', 'yillik bozordagi faoliyatimiz', 'turdagi bizneslarga xizmat koʻrsatamiz'],
+    regionsTitle: 'Qaysi hududlarda ishlaymiz',
+    regionsText: 'Bosh ofisimiz Toshkentda. Oʻzbekistonning turli viloyatlaridagi mijozlarga xizmat koʻrsatamiz.',
+    hq: 'Bosh ofis',
+  },
   showcase: {
     title: 'Dastur bilan tanishing',
     subtitle: 'Toʻlovlar, ombor qoldiqlari, top mahsulotlar va mijozlar — hammasi bitta ekranda',
@@ -139,6 +146,13 @@ const ru = {
       ['Компании сферы услуг', 'Продажа услуг, база клиентов и учёт платежей'],
     ],
   },
+  stats: {
+    title: 'Компания в цифрах',
+    items: ['бизнесов автоматизировано с Epro', 'сотрудников ежедневно работают в Epro', 'года на рынке', 'видов бизнеса мы обслуживаем'],
+    regionsTitle: 'Где мы работаем',
+    regionsText: 'Головной офис — в Ташкенте. Обслуживаем клиентов в разных регионах Узбекистана.',
+    hq: 'Головной офис',
+  },
   showcase: {
     title: 'Познакомьтесь с программой',
     subtitle: 'Платежи, складские остатки, топ товаров и клиенты — всё на одном экране',
@@ -248,6 +262,13 @@ const en = {
       ['Electronics & appliance stores', 'Sell appliances and electronics, keep track of customers and debtors'],
       ['Service companies', 'Sell services, keep a customer base and track payments'],
     ],
+  },
+  stats: {
+    title: 'Epro in numbers',
+    items: ['businesses automated with Epro', 'employees work in Epro every day', 'years on the market', 'types of businesses we serve'],
+    regionsTitle: 'Where we work',
+    regionsText: 'Our head office is in Tashkent. We serve customers across the regions of Uzbekistan.',
+    hq: 'Head office',
   },
   showcase: {
     title: 'Take a look inside',

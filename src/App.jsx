@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Audience from './components/Audience'
+import Stats from './components/Stats'
 import Showcase from './components/Showcase'
 import Modules from './components/Modules'
 import Benefits from './components/Benefits'
@@ -18,6 +19,7 @@ export default function App() {
       <Header onCta={openModal} />
       <main>
         <Hero onCta={openModal} />
+        <Stats />
         <Audience />
         <Showcase />
         <Modules />

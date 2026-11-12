@@ -364,3 +364,28 @@ img { max-width: 100%; }
   .lp-phone { display: none; }
   .lp-card { padding: 24px 20px; border-radius: 20px; }
 }
+
+/* ===== Raqamlar va hududlar ===== */
+.stat {
+  text-align: center; padding: 36px 20px; border-radius: var(--radius);
+  background: var(--bg-gray); border: 1px solid var(--line);
+}
+.stat b { display: block; font-size: 48px; line-height: 1; font-weight: 800; color: var(--blue); letter-spacing: -0.02em; }
+.stat span { display: block; margin-top: 14px; color: var(--ink-2); font-size: 16px; }
+.regions { margin-top: 80px; }
+.region-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.region-list li {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px;
+  background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); font-weight: 600;
+}
+.region-list svg { color: var(--blue); }
+.region-list li.hq { background: var(--gradient); color: #fff; border-color: transparent; box-shadow: var(--shadow-blue); }
+.region-list li.hq svg { color: #fff; }
+.region-list small { font-weight: 500; opacity: .85; }
+@media (max-width: 560px) {
+  .stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat { padding: 24px 12px; }
+  .stat b { font-size: 34px; }
+  .stat span { font-size: 14px; }
+  .regions { margin-top: 56px; }
+}
