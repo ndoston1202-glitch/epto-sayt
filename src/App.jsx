@@ -20,7 +20,7 @@ export default function App() {
         <Hero onCta={openModal} />
         <Audience />
         <Showcase />
-        <Modules onCta={openModal} />
+        <Modules />
         <Benefits />
         <Why onCta={openModal} />
       </main>

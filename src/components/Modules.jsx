@@ -4,7 +4,7 @@ import SectionHead from './SectionHead'
 
 const icons = ['warehouse', 'register', 'chart', 'users']
 
-export default function Modules({ onCta }) {
+export default function Modules() {
   const { t } = useLang()
   return (
     <section className="section" id="modules">
@@ -20,11 +20,6 @@ export default function Modules({ onCta }) {
               <p>{text}</p>
             </article>
           ))}
-        </div>
-        <div className="module-cta">
-          <span className="icon-soft"><Icon name="phone" /></span>
-          <p>{t.modules.moreText}</p>
-          <button className="btn btn-primary" onClick={onCta}>{t.cta.demo}</button>
         </div>
       </div>
     </section>

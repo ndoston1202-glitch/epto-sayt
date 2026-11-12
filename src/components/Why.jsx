@@ -51,7 +51,7 @@ export default function Why({ onCta }) {
         </div>
         <div className="demo-cta">
           <h3>{t.why.demoTitle}</h3>
-          <button className="btn btn-primary btn-lg" onClick={onCta}>{t.cta.demo}</button>
+          <button className="btn btn-primary btn-lg" onClick={onCta}>{t.cta.consultLong}</button>
         </div>
       </div>
     </section>

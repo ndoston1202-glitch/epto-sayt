@@ -47,7 +47,6 @@ export default function Hero({ onCta }) {
           <p>{t.hero.subtitle}</p>
           <div className="hero-actions">
             <button className="btn btn-primary btn-lg" onClick={onCta}>{t.cta.consultLong}</button>
-            <button className="btn btn-outline btn-lg" onClick={onCta}>{t.cta.demo}</button>
           </div>
         </div>
         <Devices alt={t.hero.screenAlt} />
