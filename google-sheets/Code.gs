@@ -6,6 +6,9 @@
  * skript egasining Gmail manziliga xat yuboradi.
  */
 
+// Skript jadval ichidan (Kengaytmalar → Apps Script) ochilgan bo'lsa, bo'sh qoldiring.
+// Alohida yaratilgan bo'lsa, jadval ID sini yozing: docs.google.com/spreadsheets/d/<ID>/edit
+const SHEET_ID = ''
 const SHEET_NAME = 'Arizalar'
 const HEADERS = ['Sana', 'Ism', 'Telefon', 'Kompaniya', 'Til', 'Holat']
 // Xat boshqa manzilga ham borsin desangiz, shu yerga vergul bilan yozing
@@ -44,8 +47,14 @@ function doGet() {
   return ContentService.createTextOutput('EPRO arizalar skripti ishlayapti')
 }
 
+function getSpreadsheet() {
+  const ss = SHEET_ID ? SpreadsheetApp.openById(SHEET_ID) : SpreadsheetApp.getActiveSpreadsheet()
+  if (!ss) throw new Error('Jadval topilmadi: SHEET_ID ga jadval ID sini yozing')
+  return ss
+}
+
 function getSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet()
+  const ss = getSpreadsheet()
   let sheet = ss.getSheetByName(SHEET_NAME)
   if (!sheet) sheet = ss.insertSheet(SHEET_NAME)
   if (sheet.getLastRow() === 0) {
@@ -59,7 +68,7 @@ function getSheet() {
 function sendMail(d) {
   const owner = Session.getEffectiveUser().getEmail()
   const to = [owner, EXTRA_EMAILS].filter(String).join(',')
-  const sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl()
+  const sheetUrl = getSpreadsheet().getUrl()
   const row = (k, v) =>
     '<tr><td style="padding:6px 12px;color:#666">' + k + '</td><td style="padding:6px 12px"><b>' + esc(v || '—') + '</b></td></tr>'
 
