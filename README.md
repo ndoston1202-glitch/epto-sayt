@@ -15,7 +15,7 @@ npm run build    # tayyor fayllar dist/ papkasida
 | Fayl | Nima uchun |
 |---|---|
 | `src/translations.js` | Barcha matnlar (UZ / RU / EN) |
-| `src/config.js` | Telefon, Telegram, Instagram, Google Script URL |
+| `src/config.js` | Telefon, Telegram, Instagram |
 | `src/styles.css` | Ranglar (`:root` ichida) va dizayn |
 | `src/components/` | Har bir boʻlim alohida komponent |
 | `src/components/LeadModal.jsx` | “Bepul konsultatsiya” formasi |
@@ -24,5 +24,5 @@ npm run build    # tayyor fayllar dist/ papkasida
 
 ## Arizalar
 
-Forma arizani ikki joyga yuboradi: Netlify Forms (zaxira) va Google Sheets + Gmail.
+Forma arizani Netlify Forms'ga yuboradi, `netlify/functions/submission-created.mjs` esa uni serverdan Google Sheets + Gmail'ga uzatadi.
 Google qismini sozlash: [`google-sheets/README.md`](google-sheets/README.md).

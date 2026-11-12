@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useLang } from '../i18n'
 import Icon from '../icons'
-import { GOOGLE_SCRIPT_URL } from '../config'
 
-// Ariza ikki joyga yuboriladi:
-//  1) Netlify Forms (forma nomi "lead") — maydonlar public/__forms.html bilan bir xil bo'lishi kerak
-//  2) Google Apps Script (config.js dagi GOOGLE_SCRIPT_URL) — Google Sheets'ga yozadi va Gmail'ga xat yuboradi
+// Ariza Netlify Forms'ga yuboriladi (forma nomi "lead"; maydonlar public/__forms.html bilan bir xil bo'lishi kerak).
+// Keyin netlify/functions/submission-created.mjs uni serverdan Google Sheets + Gmail'ga uzatadi.
 export default function LeadModal({ onClose }) {
   const { t, lang } = useLang()
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
@@ -25,28 +23,17 @@ export default function LeadModal({ onClose }) {
     setStatus('sending')
     const data = new FormData(e.target)
     data.set('subject', `EPRO: yangi ariza — ${data.get('name')}`)
-    const body = new URLSearchParams(data).toString()
-
-    const toNetlify = fetch('/__forms.html', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body,
-    }).then((res) => {
+    try {
+      const res = await fetch('/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
       if (!res.ok) throw new Error(res.status)
-    })
-    // Apps Script CORS javobini qaytarmaydi, shuning uchun no-cors: javobni o'qib bo'lmaydi,
-    // lekin so'rov yetib boradi.
-    const toGoogle = GOOGLE_SCRIPT_URL
-      ? fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body,
-        })
-      : Promise.reject(new Error('no google url'))
-
-    const results = await Promise.allSettled([toNetlify, toGoogle])
-    setStatus(results.some((r) => r.status === 'fulfilled') ? 'sent' : 'error')
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (

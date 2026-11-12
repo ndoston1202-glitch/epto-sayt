@@ -30,7 +30,7 @@ Taxminan 5 daqiqa vaqt oladi.
    (`https://script.google.com/macros/s/.../exec` ko'rinishida).
 
 ## 5. URL'ni saytga qo'ying
-URL'ni menga yuboring yoki `src/config.js` faylidagi qatorga yozing:
+URL'ni menga yuboring yoki `netlify/functions/submission-created.mjs` faylidagi qatorga yozing:
 
 ```js
 export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/.../exec'
