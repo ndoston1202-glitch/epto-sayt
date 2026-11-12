@@ -22,20 +22,32 @@ npm run build    # tayyor fayllar dist/ papkasida
 | `src/assets/` | Logo va dastur skrinshotlari |
 
 
-## Arizalar
+## Arizalar → Telegram bot
 
-Forma arizani ikki joyga yuboradi:
+Forma arizani `POST /api/lead` ga yuboradi. Server tokenni o'zida ishlatib, arizani **Telegram bot**ga
+(va sozlangan bo'lsa **Google Sheets + Gmail**'ga) yuboradi. Token brauzerga chiqmaydi.
 
-1. **`/api/lead`** — server endpoint (`netlify/functions/lead.mjs`). Arizani **Telegram bot**ga va **Google Sheets + Gmail**'ga yuboradi.
-2. **Netlify Forms** — zaxira nusxa (Netlify panel → Forms).
+Mantiq bitta faylda — `server/lead.mjs`. Har bir hosting uchun kichik "ulagich" bor:
 
-Maxfiy qiymatlar faqat serverda, muhit o'zgaruvchilaridan o'qiladi — brauzerga yuboriladigan kodda yo'q:
+| Hosting | Fayl | Ishga tushirish |
+|---|---|---|
+| **Netlify** | `netlify/functions/lead.mjs` | Repo'ni ulang — `netlify.toml` hammasini sozlaydi |
+| **Vercel** | `api/lead.js` | Repo'ni import qiling (Framework: Vite) |
+| **VPS / istalgan Node hosting** (cPanel Node.js, Render, Railway…) | `server.mjs` | `npm install && npm run build && npm start` |
 
-| O'zgaruvchi | Nima |
-|---|---|
-| `TELEGRAM_BOT_TOKEN` | @BotFather bergan bot tokeni |
-| `TELEGRAM_CHAT_ID` | Ariza boradigan chat yoki guruh ID (bir nechta bo'lsa vergul bilan) |
-| `GOOGLE_SCRIPT_URL` | Google Apps Script veb-ilova manzili ([sozlash](google-sheets/README.md)) |
+### Muhit o'zgaruvchilari (har bir hostingda bir marta kiritiladi)
 
-- **Lokal:** `cp .env.example .env`, qiymatlarni yozing, `npx netlify dev` bilan ishga tushiring. `.env` git'ga tushmaydi.
-- **Netlify:** Project configuration → Environment variables → shu nomlar bilan qo'shing (Scopes: Functions), keyin qayta deploy qiling.
+| O'zgaruvchi | Majburiy | Nima |
+|---|---|---|
+| `TELEGRAM_BOT_TOKEN` | ha | @BotFather bergan bot tokeni |
+| `TELEGRAM_CHAT_ID` | ha | Ariza boradigan chat ID (bir nechta bo'lsa vergul bilan) |
+| `GOOGLE_SCRIPT_URL` | yo'q | Google Sheets + Gmail uchun ([sozlash](google-sheets/README.md)) |
+
+- **Netlify:** Project configuration → Environment variables
+- **Vercel:** Project → Settings → Environment Variables
+- **VPS / Node:** loyiha papkasida `.env` fayli (`cp .env.example .env`) yoki hosting panelidagi "Environment variables"
+
+`.env` git'ga tushmaydi — token GitHub'da ko'rinmaydi. Shuning uchun yangi hostingga qo'yganda
+shu 2–3 qiymatni o'sha hosting sozlamalariga kiritish kerak.
+
+Netlify Forms qo'shimcha zaxira sifatida faqat Netlify'da ishlaydi; boshqa hostinglarda u o'tkazib yuboriladi.
