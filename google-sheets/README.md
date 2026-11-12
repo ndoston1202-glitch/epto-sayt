@@ -30,13 +30,7 @@ Taxminan 5 daqiqa vaqt oladi.
    (`https://script.google.com/macros/s/.../exec` ko'rinishida).
 
 ## 5. URL'ni saytga qo'ying
-URL'ni menga yuboring yoki `netlify/functions/submission-created.mjs` faylidagi qatorga yozing:
-
-```js
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/.../exec'
-```
-
-Keyin sayt qayta joylanadi.
+URL'ni Netlify'da `GOOGLE_SCRIPT_URL` muhit o'zgaruvchisiga yozing (lokal ishlash uchun `.env` ga), keyin sayt qayta joylanadi.
 
 ## Eslatmalar
 - Kodni o'zgartirsangiz: **Deploy → Manage deployments → ✏️ → Version: New version → Deploy**. URL o'zgarmaydi.

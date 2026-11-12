@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../i18n'
 import Icon from '../icons'
 
-// Ariza Netlify Forms'ga yuboriladi (forma nomi "lead"; maydonlar public/__forms.html bilan bir xil bo'lishi kerak).
-// Keyin netlify/functions/submission-created.mjs uni serverdan Google Sheets + Gmail'ga uzatadi.
+// Ariza ikki joyga yuboriladi:
+//  1) /api/lead — server endpoint (netlify/functions/lead.mjs): Telegram bot + Google Sheets/Gmail.
+//     Bot tokeni faqat serverda (.env / Netlify env), brauzerga chiqmaydi.
+//  2) Netlify Forms (forma nomi "lead") — zaxira nusxa; maydonlar public/__forms.html bilan bir xil.
 export default function LeadModal({ onClose }) {
   const { t, lang } = useLang()
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
@@ -23,17 +25,18 @@ export default function LeadModal({ onClose }) {
     setStatus('sending')
     const data = new FormData(e.target)
     data.set('subject', `EPRO: yangi ariza — ${data.get('name')}`)
-    try {
-      const res = await fetch('/__forms.html', {
+    const body = new URLSearchParams(data).toString()
+    const post = (url) =>
+      fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString(),
+        body,
+      }).then((res) => {
+        if (!res.ok) throw new Error(res.status)
       })
-      if (!res.ok) throw new Error(res.status)
-      setStatus('sent')
-    } catch {
-      setStatus('error')
-    }
+
+    const results = await Promise.allSettled([post('/api/lead'), post('/__forms.html')])
+    setStatus(results.some((r) => r.status === 'fulfilled') ? 'sent' : 'error')
   }
 
   return (
