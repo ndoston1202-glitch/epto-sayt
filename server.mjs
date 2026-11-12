@@ -8,6 +8,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { extname, join, normalize, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { handleLead, parseBody } from './server/lead.mjs'
+import { instagramResponse } from './server/instagram.mjs'
 
 const ROOT = fileURLToPath(new URL('.', import.meta.url))
 const DIST = resolve(ROOT, 'dist')
@@ -54,6 +55,11 @@ function send(res, status, body, type = 'application/json') {
 
 createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost')
+
+  if (url.pathname === '/api/instagram') {
+    const { status, json } = await instagramResponse((k) => process.env[k])
+    return send(res, status, json)
+  }
 
   if (url.pathname === '/api/lead') {
     if (req.method !== 'POST') return send(res, 405, { ok: false })

@@ -34,6 +34,12 @@ https://e-pro.uz/ariza?utm_source=instagram&utm_campaign=noyabr_aksiya
 Botga kelgan xabarda `📍 Manba: ariza sahifasi` va `📣 Reklama: instagram · noyabr_aksiya` ko'rinadi.
 Fayllar: `ariza/index.html`, `src/ariza.jsx`, `src/components/LeadPage.jsx`.
 
+## Mediateka: `/mediateka`
+
+Instagram (@e_pro.uz) postlari va reels'lari avtomatik chiqadi. Kerakli kalit: `INSTAGRAM_ACCESS_TOKEN`
+— olish va yangilash: [`docs/INSTAGRAM.md`](docs/INSTAGRAM.md). Mantiq: `server/instagram.mjs`
+(Netlify: `netlify/functions/instagram.mjs`, Vercel: `api/instagram.js`, Node: `server.mjs`).
+
 ## Arizalar → Telegram bot
 
 Forma arizani `POST /api/lead` ga yuboradi. Server tokenni o'zida ishlatib, arizani **Telegram bot**ga
@@ -54,6 +60,7 @@ Mantiq bitta faylda — `server/lead.mjs`. Har bir hosting uchun kichik "ulagich
 | `TELEGRAM_BOT_TOKEN` | ha | @BotFather bergan bot tokeni |
 | `TELEGRAM_CHAT_ID` | ha | Ariza boradigan chat ID (bir nechta bo'lsa vergul bilan) |
 | `GOOGLE_SCRIPT_URL` | yo'q | Google Sheets + Gmail uchun ([sozlash](google-sheets/README.md)) |
+| `INSTAGRAM_ACCESS_TOKEN` | yo'q | Mediateka uchun ([sozlash](docs/INSTAGRAM.md)) |
 
 - **Netlify:** Project configuration → Environment variables
 - **Vercel:** Project → Settings → Environment Variables

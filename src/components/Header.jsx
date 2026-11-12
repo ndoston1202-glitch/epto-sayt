@@ -4,11 +4,12 @@ import { languages } from '../translations'
 import Logo from './Logo'
 import Icon from '../icons'
 
+// "/#..." — boshqa sahifadan (masalan /mediateka) ham asosiy sahifa bo'limiga olib boradi
 const links = [
-  ['home', '#top'],
-  ['product', '#product'],
-  ['modules', '#modules'],
-  ['benefits', '#benefits'],
+  ['home', '/#top'],
+  ['product', '/#product'],
+  ['modules', '/#modules'],
+  ['media', '/mediateka/'],
   ['contacts', '#contacts'],
 ]
 
@@ -59,7 +60,7 @@ export default function Header({ onCta }) {
     <header className="header">
       <div className="container">
         <div className="header-bar">
-          <a href="#top" className="header-logo" aria-label="EPRO">
+          <a href="/" className="header-logo" aria-label="EPRO">
             <Logo height={24} />
           </a>
           <nav className={`nav ${menu ? 'open' : ''}`}>
