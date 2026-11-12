@@ -118,17 +118,68 @@ img { max-width: 100%; }
 }
 
 /* ===== Hero ===== */
-.hero { padding: 64px 0 96px; background: radial-gradient(1000px 420px at 50% -10%, var(--tint), transparent 70%); }
-.hero-text { text-align: center; max-width: 820px; margin: 0 auto; }
+.hero { padding: 56px 0 96px; overflow: hidden; background: radial-gradient(900px 480px at 85% 10%, var(--tint), transparent 70%); }
+.hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
 .hero-badge {
   display: inline-block; padding: 8px 16px; border-radius: 999px; background: #fff; border: 1px solid #d6e3ff;
   color: var(--blue); font-weight: 600; font-size: 14px; margin-bottom: 22px;
 }
-.hero h1 { font-size: 60px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; color: var(--blue); }
-.hero-text p { margin: 22px auto 34px; font-size: 19px; color: var(--ink-2); max-width: 640px; }
-.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.hero-screen { margin-top: 56px; }
+.hero h1 { font-size: 56px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; color: var(--blue); }
+.hero-text p { margin: 22px 0 34px; font-size: 19px; color: var(--ink-2); max-width: 540px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* --- Qurilmalar: MacBook + iPhone 16 Pro --- */
+.devices-hero { position: relative; padding: 0 6% 7% 0; container-type: inline-size; }
+
+.mac { position: relative; }
+.mac-lid {
+  position: relative; background: #0b0b0d; border-radius: 3cqw 3cqw 0 0; padding: 2.3cqw 2.3cqw 3.2cqw;
+  box-shadow: 0 0 0 1px #2b2c30 inset, 0 30px 70px rgba(10, 30, 80, .22);
+}
+.mac-lid::before { /* kamera "notch" */
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 14%; height: 2.6cqw; background: #0b0b0d; border-radius: 0 0 1.2cqw 1.2cqw; z-index: 2;
+}
+.mac-lid::after { content: ''; position: absolute; top: .9cqw; left: 50%; width: .9cqw; height: .9cqw; margin-left: -.45cqw; border-radius: 50%; background: #1f2633; z-index: 3; }
+.mac-display { aspect-ratio: 16 / 10; overflow: hidden; border-radius: .6cqw; background: #eef1f4; }
+.mac-display img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+.mac-base {
+  position: relative; height: 2.6cqw; width: 114%; margin-left: -7%;
+  background: linear-gradient(180deg, #e9eaec 0%, #c9cbcf 55%, #9fa2a7 100%);
+  border-radius: .4cqw .4cqw 2.6cqw 2.6cqw / .4cqw .4cqw 1.8cqw 1.8cqw;
+  box-shadow: 0 18px 30px rgba(10, 30, 80, .18);
+}
+.mac-base::before { /* ochish uchun chuqurcha */
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 15%; height: 1cqw; background: linear-gradient(180deg, #b7babf, #d4d6d9); border-radius: 0 0 1cqw 1cqw;
+}
+
+.iphone {
+  position: absolute; right: 0; bottom: 0; width: 27%; aspect-ratio: 71.5 / 149.6;
+  filter: drop-shadow(0 24px 40px rgba(10, 30, 80, .3));
+}
+.iphone-body {
+  position: absolute; inset: 0; border-radius: 17% / 8.2%; padding: 1.4cqw;
+  background: linear-gradient(140deg, #9c9791 0%, #e2ded8 22%, #8f8a84 48%, #d6d2cc 75%, #85807a 100%);
+}
+.iphone-screen {
+  position: relative; height: 100%; overflow: hidden; background: #eef1f4;
+  border-radius: 15.5% / 7.4%; box-shadow: 0 0 0 .9cqw #050506; container-type: inline-size;
+}
+.island { position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 33%; height: 4.6%; background: #050506; border-radius: 999px; z-index: 3; }
+.iphone-status { display: flex; justify-content: space-between; align-items: center; padding: 8cqw 9cqw 0 13cqw; height: 15cqw; font-size: 6cqw; color: #111; background: #fff; }
+.iphone-status b { font-weight: 700; }
+.status-icons { display: flex; gap: 1.5cqw; align-items: flex-end; }
+.status-icons i { display: block; width: 3.2cqw; background: #111; border-radius: .6cqw; }
+.status-icons i:nth-child(1) { height: 3cqw; } .status-icons i:nth-child(2) { height: 4.2cqw; } .status-icons i:nth-child(3) { width: 7cqw; height: 3.6cqw; border-radius: 1cqw; }
+.iphone-appbar { background: #fff; padding: 2cqw 6cqw 4cqw; font-weight: 700; font-size: 7cqw; color: #111; border-bottom: 1px solid #e5e8ec; }
+.iphone-screen img { display: block; width: 100%; height: auto; }
+.iphone-btn { position: absolute; width: 1.2%; background: #8d8882; border-radius: 2px; }
+.iphone-btn.b1 { left: -1%; top: 18%; height: 5%; }
+.iphone-btn.b2 { left: -1%; top: 26%; height: 9%; }
+.iphone-btn.b3 { right: -1%; top: 28%; height: 13%; }
+
+/* --- Brauzer ramkasi (Dastur bo'limi) --- */
 .browser { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(10, 77, 255, .14), var(--shadow); }
 .browser-bar { display: flex; align-items: center; gap: 7px; padding: 12px 16px; background: var(--bg-gray); border-bottom: 1px solid var(--line); }
 .browser-bar i { width: 11px; height: 11px; border-radius: 50%; background: #d9dde5; }
@@ -210,7 +261,12 @@ img { max-width: 100%; }
 /* ===== Moslashuvchanlik ===== */
 @media (max-width: 1080px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-text { text-align: center; max-width: 720px; margin: 0 auto; }
+  .hero-text p { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
   .hero h1 { font-size: 46px; }
+  .devices-hero { max-width: 720px; width: 100%; margin: 0 auto; }
   .nav { display: none; }
   .nav.open {
     display: flex; flex-direction: column; position: absolute; left: 24px; right: 24px; top: 76px;
@@ -230,7 +286,6 @@ img { max-width: 100%; }
   .footer-grid > div:first-child { grid-column: 1 / -1; }
   .header-cta { display: none; }
   .module-cta { flex-direction: column; text-align: center; }
-  .hero-screen { margin-top: 40px; }
 }
 
 @media (max-width: 560px) {
