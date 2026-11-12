@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { useLang } from '../i18n'
 import Icon from '../icons'
 
-// Hozircha ariza hech qayerga yuborilmaydi. Telegram bot / CRM ulanganda
-// handleSubmit ichiga so'rov qo'shiladi.
+// Arizalar Netlify Forms orqali yuboriladi (forma nomi: "lead").
+// Maydonlar public/__forms.html dagi nusxa bilan bir xil bo'lishi kerak.
 export default function LeadModal({ onClose }) {
-  const { t } = useLang()
-  const [sent, setSent] = useState(false)
+  const { t, lang } = useLang()
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
   useEffect(() => {
     const onKey = (e) => e.key === 'Escape' && onClose()
@@ -18,9 +18,22 @@ export default function LeadModal({ onClose }) {
     }
   }, [onClose])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setStatus('sending')
+    const data = new FormData(e.target)
+    data.set('subject', `EPRO: yangi ariza — ${data.get('name')}`)
+    try {
+      const res = await fetch('/__forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
+      if (!res.ok) throw new Error(res.status)
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -29,20 +42,28 @@ export default function LeadModal({ onClose }) {
         <button className="modal-close" onClick={onClose} aria-label={t.form.close}>
           <Icon name="close" size={20} />
         </button>
-        {sent ? (
+        {status === 'sent' ? (
           <div className="modal-success">
             <span className="icon-solid"><Icon name="check" /></span>
             <p>{t.form.success}</p>
             <button className="btn btn-primary" onClick={onClose}>{t.form.close}</button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form name="lead" onSubmit={handleSubmit}>
+            <input type="hidden" name="form-name" value="lead" />
+            <input type="hidden" name="language" value={lang} />
+            <p className="hp" aria-hidden="true">
+              <input name="bot-field" tabIndex={-1} autoComplete="off" />
+            </p>
             <h3 id="lead-title">{t.form.title}</h3>
             <p>{t.form.text}</p>
             <input required name="name" placeholder={t.form.name} autoComplete="name" />
             <input required name="phone" type="tel" placeholder={t.form.phone} defaultValue="+998 " autoComplete="tel" />
             <input name="company" placeholder={t.form.company} autoComplete="organization" />
-            <button className="btn btn-primary btn-lg" type="submit">{t.form.submit}</button>
+            {status === 'error' && <p className="form-error">{t.form.error}</p>}
+            <button className="btn btn-primary btn-lg" type="submit" disabled={status === 'sending'}>
+              {status === 'sending' ? t.form.sending : t.form.submit}
+            </button>
           </form>
         )}
       </div>

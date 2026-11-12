@@ -326,3 +326,7 @@ img { max-width: 100%; }
   .marquee-track { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-error { color: #d92d20; font-size: 14px; margin: 4px 0 8px; }
+.btn:disabled { opacity: .7; cursor: wait; }
