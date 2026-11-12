@@ -31,7 +31,7 @@ const uz = {
   },
   stats: {
     title: 'Kompaniyamiz raqamlarda',
-    items: ['biznes Epro bilan avtomatlashtirilgan', 'xodim kundalik ishini Epro’da yuritadi', 'yillik bozordagi faoliyatimiz', 'turdagi bizneslarga xizmat koʻrsatamiz'],
+    items: ['biznes Epro bilan avtomatlashtirilgan', 'mijozlarimiz xodimlari Epro’da ishlaydi', 'yillik bozordagi faoliyatimiz', 'turdagi bizneslarga xizmat koʻrsatamiz'],
     regionsTitle: 'Qaysi hududlarda ishlaymiz',
     regionsText: 'Bosh ofisimiz Toshkentda. Oʻzbekistonning turli viloyatlaridagi mijozlarga xizmat koʻrsatamiz.',
     hq: 'Bosh ofis',
@@ -148,7 +148,7 @@ const ru = {
   },
   stats: {
     title: 'Компания в цифрах',
-    items: ['бизнесов автоматизировано с Epro', 'сотрудников ежедневно работают в Epro', 'года на рынке', 'видов бизнеса мы обслуживаем'],
+    items: ['бизнесов автоматизировано с Epro', 'сотрудников наших клиентов работают в Epro', 'года на рынке', 'видов бизнеса мы обслуживаем'],
     regionsTitle: 'Где мы работаем',
     regionsText: 'Головной офис — в Ташкенте. Обслуживаем клиентов в разных регионах Узбекистана.',
     hq: 'Головной офис',
@@ -265,7 +265,7 @@ const en = {
   },
   stats: {
     title: 'Epro in numbers',
-    items: ['businesses automated with Epro', 'employees work in Epro every day', 'years on the market', 'types of businesses we serve'],
+    items: ['businesses automated with Epro', 'of our customers’ employees work in Epro', 'years on the market', 'types of businesses we serve'],
     regionsTitle: 'Where we work',
     regionsText: 'Our head office is in Tashkent. We serve customers across the regions of Uzbekistan.',
     hq: 'Head office',
